@@ -4,10 +4,10 @@ import json
 from datetime import datetime, timedelta
 
 epoc = datetime(1800,1,1,0,0,0)
-startDate = 39812 #year 2000
+startDate = 14610 #year 2000
 
 #filename = 'sun_hadukgrid_uk_region_mon-20y_198101-200012'
-filename = 'rainfall_hadukgrid_uk_region_day_18910101-20211231'
+filename = 'tasmax_hadukgrid_uk_region_day_19600101-20211231'
 
 print("Reading .nc file...")
 f = netCDF4.Dataset(filename + '.nc')
@@ -62,7 +62,7 @@ md['time_bnds'] = rn
 #print(rn)
 
 rn=[]
-for i, x in enumerate(rainfall[startDate:]):
+for i, x in enumerate(tasmax[startDate:]):
     ro = {}
     ro['time_bnd'] = i
     sn = []
@@ -78,7 +78,7 @@ for i, x in enumerate(rainfall[startDate:]):
     ro['regions'] = sn
     rn.append(ro)
     # print(x)
-md['rainfall'] = rn
+md['tasmax'] = rn
 #print(rn)
 
 #print(json.dumps(md, indent=4))
